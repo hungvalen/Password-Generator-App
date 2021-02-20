@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ứng dụng tạo mật khẩu mạnh by Hùng Phạm</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="inputBox">
+        <h2>Ứng dụng gợi ý mật khẩu mạnh by Hùng Phạm</h2>
+        <input type="text" name="" placeholder="Nhập mật khẩu:" id = "password" readonly=""
+        >
+        <img class="copy" src="copy.png" alt="" onclick="copyPassword();">
+        <div id="btn" onclick="getPassword();">
+            Mật khẩu ngẫu nhiên
+        </div>
+    </div>
+    <div class="alertBox">
+
+    </div>
+    <script type="text/javascript">
+        var alertBox= document.querySelector('.alertBox')
+        function getPassword()
+        {
+            var chars= "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()_+?><:{}[]";
+            var passwordLength = 16;
+            var password= "";
+            for (var i=0; i<passwordLength; i++)
+            {
+                var randomNumber = Math.floor(Math.random() *  chars.length);
+                password += chars.substring(randomNumber,randomNumber+1);       
+            }
+            document.getElementById("password").value= password;
+            alertBox.innerHTML ="New Password Copied: <br>" + password;
+        }
+        function copyPassword(){
+            var copyPassText=document.getElementById("password");
+            copyPassText.select();
+            copyPassText.setSelectionRange(0,9999);
+            document.execCommand("copy");
+            alertBox.classList.toggle('active');
+            setTimeout(function(){
+                alertBox.classList.toggle('active');
+
+            },2000)
+        }
+    
+    </script>
+</body>
+</html>
